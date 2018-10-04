@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Javascript operacioes</title>
+        <meta content="Javascript operacioes" name="description">
+        <link rel="stylesheet" href="../estilos.css">
+        <link rel="stylesheet" href="../estilo.css">
+    </head>
+    <body>
+        <header>
+            <div class="menu_bar">
+                <a href="#" class="bt-menu"><span class="icon-list2"></span>Menú</a>
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="../index.html"><span class="icon-house"></span>Inicio</a></li>
+                    <li><a href="../contacto.html"><span class="icon-suitcase"></span>Contacto</a></li>
+                    <li class="submenu">
+                        <a href="#"><span class="icon-rocket"></span>Trabajos<span class="caret icon-arrow-down6"></span></a>
+                        <ul class="children">
+                            <li><a href="Trabajo1.html">Trabajo 1 <span class="icon-dot"></span></a></li>
+                            <li><a href="Trabajo2.html">Trabajo 2 <span class="icon-dot"></span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <p>Dime tu peso y altura: </p>
+        <form name="form" method="get">
+            <p>Peso (en kg): </p>
+            <input name="peso" type="text">
+            <p>Altura (en metros): </p>
+            <input name="altura" type="text">
+            <button type="button" onclick="oper()" >Operacion</button>
+        </form>
+        <p id="ej"></p>
+        <p id="calc"></p>
+        <script>
+            function calculoimc(alt, pes){
+                 var opera=parseFloat(pes)/(parseFloat(alt)*parseFloat(alt));
+                return opera;
+            }
+            
+            function oper(){
+                var pes = document.forms["form"]["peso"].value;
+                var alt = document.forms["form"]["altura"].value;
+                var operacio = calculoimc(alt, pes);
+                 if (pes == "" && alt=="") {
+                    document.getElementById("ej").innerHTML = "Los campos estan vacios";
+                } 
+                else if (pes == "" || alt==""){
+                   document.getElementById("ej").innerHTML = "Uno de los elementos esta vacio"; 
+                }
+                else if (isNaN(pes) && isNaN(alt)){
+                    document.getElementById("ej").innerHTML = "No has puesto un numero valido"; 
+                }
+                else if (isNaN(pes) || isNaN(alt)){
+                    document.getElementById("ej").innerHTML = "Uno de los dos no es un numero valido"; 
+                }
+                else if (operacio<=18.5){         
+                    document.getElementById("ej").innerHTML = "Tu masa corporal es de: " +operacio;
+                    document.getElementById("calc").innerHTML = "Tienes Bajo Peso";
+                }
+                else if (operacio>18.5 && operacio<25){
+                   document.getElementById("ej").innerHTML = "Tu masa corporal es de: " +operacio; 
+                    document.getElementById("ej").innerHTML = "Tienes un peso Normal";
+                }
+                else if (operacio>=25 && operacio<30){
+                    document.getElementById("ej").innerHTML = "Tu masa corporal es de: " +operacio;
+                    document.getElementById("calc").innerHTML = "Tienes sobrepeso";
+                }
+                else {
+                    document.getElementById("ej").innerHTML = "Tu masa corporal es de: " +operacio; 
+                    document.getElementById("calc").innerHTML = "Tienes Obesidad";
+                }
+            }
+        </script>
+        <p id="ejercicio"></p>
+    </body> 
+</html>
